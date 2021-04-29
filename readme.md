@@ -57,8 +57,32 @@ Interestingly, whether or not the provider was Male seems to be the best predict
 
 We can infur from these results that most of the physicians that end up on the LEIE are getting into trouble for overprescribing medication. Let’s take a look at the information from the second model I used, a random forest.
 
+![Normalized confusion matrix for random forest models](./images/forest_confusion.png)
+
+From these confusion matrices, it seems that the model trained on the combined dataset would misclassify fraudulent physicians as legitimate more than any of the other models. The model trained on the Part D dataset has a slight bias towards predicting fraud, which could lead to wasting resources investigating legitimate physicians. Let’s look at the AUC for these models.
 
 
+![](./images/randforest_ROC.png)
+
+Now we can see that there is a 85% chance that the model trained on the combined data will be able to distinguish between the `FRAUD` and `NOT FRAUD` classes.
+
+## Feature Importances (Random Forest)
 
 
+![](./images/rand_forest_features.png)
 
+Similar to logistic regression, the random forest model placed a lot of importance on the gender of the physician. Additionally, the definitions of the most important features in determining fraud are listed below.
+
+- *`line_srvc_cnt_mean / line_srvc_cnt_std`* = Mean/Standard Deviation of the number of services provided.
+- *`bene_unique_cnt_mean / bene_unique_count_max`* = Average/Max number of unique Medicare Beneficiaries.
+- *`total_30_day_fill_count_median`* = The median number of 30-Day Fills, Including Refills
+
+If you look at the feature importances from the logistic regression models and compare them to the random forest models, you will see that the logistic regression models appear to weigh their top features more heavily, while the random forest models seem to spread out the weights more uniformly.
+
+## Conclusion
+
+In the future, I plan on spending some more time trying to train this data on different models. I encourage you to do the same! I’m sure as time goes on and more data is collected the accuracy of state efforts to combat fraud will only improve. [Federal Regulation only began allowing data mining like what was described in this project in 2013 for Medicaid data](https://oig.hhs.gov/fraud/medicaid-fraud-control-units-mfcu/data-mining.asp). As more data is collected yearly, I expect there to be a drastic increase in the predictive power of these models — which hopefully makes these bad actors think twice before abusing the system.
+
+### Sources
+
+The methods used to perform the data preprocessing are described in [this article](https://journalofbigdata.springeropen.com/track/pdf/10.1186/s40537-018-0138-3.pdf), which is the basis for this project.
