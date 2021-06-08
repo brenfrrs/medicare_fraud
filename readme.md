@@ -86,3 +86,18 @@ In the future, I plan on spending some more time trying to train this data on di
 ### Sources
 
 The methods used to perform the data preprocessing are described in [this article](https://journalofbigdata.springeropen.com/track/pdf/10.1186/s40537-018-0138-3.pdf), which is the basis for this project.
+
+### Repository Structure
+<pre>
+├── data_processing.ipynb
+├── images
+│   ├── banner_image.jpeg
+│   ├── forest_confusion.png
+│   ├── logreg_ROC.png
+│   ├── logreg_confusion.png
+│   ├── logreg_features.png
+│   ├── rand_forest_features.png
+│   └── randforest_ROC.png
+├── modeling.ipynb
+└── readme.md
+</pre>
